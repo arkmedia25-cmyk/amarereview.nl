@@ -2,6 +2,34 @@ import { readFileSync, readdirSync } from 'fs'
 import { join } from 'path'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+function getPost(slug: string) {
+  const path = join(process.cwd(), 'content/reviews', `${slug}.mdx`)
+  try {
+    const content = readFileSync(path, 'utf-8')
+    const match = content.match(/^---\n([\s\S]*?)\n---/)
+    if (!match) return null
+    const fm: Record<string, string> = {}
+    match[1].split('\n').forEach(line => {
+      const [k, ...v] = line.split(':')
+      if (k && v.length) fm[k.trim()] = v.join(':').trim().replace(/"/g, '')
+    })
+    return fm
+  } catch { return null }
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = getPost(params.slug)
+  if (!post) return { title: 'Review niet gevonden' }
+  const url = `https://amarereview.nl/reviews/${params.slug}`
+  return {
+    title: post.title,
+    description: post.excerpt || `Lees onze eerlijke review van ${post.title}`,
+    alternates: { canonical: url },
+    openGraph: { title: post.title, description: post.excerpt || '', url, type: 'article' },
+  }
+}
 
 export async function generateStaticParams() {
   const dir = join(process.cwd(), 'content/reviews')
