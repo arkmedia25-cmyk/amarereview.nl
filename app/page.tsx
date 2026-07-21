@@ -31,6 +31,23 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <section className="mt-16 text-center bg-gray-50 rounded-xl p-8">
+        <p className="text-text-muted mb-3">
+          Op zoek naar de volledige productinformatie, prijzen en aanbiedingen?
+        </p>
+        <a
+          href="https://amarenl.com"
+          target="_blank"
+          rel="noopener"
+          className="text-primary font-bold hover:underline text-lg"
+        >
+          Bekijk alle producten op AmareNL →
+        </a>
+        <p className="text-xs text-text-muted mt-3">
+          Onafhankelijke reviews — aankopen verlopen via de officiële Amare website.
+        </p>
+      </section>
     </div>
   )
 }
