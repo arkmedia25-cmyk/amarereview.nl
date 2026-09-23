@@ -25,11 +25,11 @@ Tek dosyadan az ve geri alınabilir bir değişiklikse (yazı düzeltmesi, sabit
 yorum satırı) dört adımı atla ve doğrudan yap. Emin değilsen bana sor.
 
 ## Proje kuralları
-<!-- AŞAĞIYI KENDİ PROJENE GÖRE DOLDUR. Doldurmazsan skill'ler çalışır ama
-     komutları her seferinde arar; doldurursan hızlanır. -->
-- Paket yöneticisi: [npm / pnpm / bun / yarn]
-- Kurulum komutu: [npm install]
-- Geliştirme sunucusu: [npm run dev]
-- Test komutu: [npm test]
-- Lint komutu: [npm run lint]
-- Bunları her PR'dan önce çalıştır.
+- Paket yöneticisi: npm (`package-lock.json`)
+- Kurulum komutu: `npm install`
+- Geliştirme sunucusu: `npm run dev` (Next.js)
+- Build: `npm run build`
+- Test komutu: yok — `package.json`'da test script'i tanımlı değil.
+- Lint komutu: yok — `package.json`'da lint script'i yok, eslint config
+  dosyası da yok.
+- Bunlardan gerçekten var olanları her PR'dan önce çalıştır.
